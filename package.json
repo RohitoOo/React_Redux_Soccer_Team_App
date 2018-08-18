@@ -10,7 +10,6 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-scripts": "1.1.4",
-    "postinstall": "react-scripts build"
   },
   "scripts": {
     "start": "react-scripts start",
