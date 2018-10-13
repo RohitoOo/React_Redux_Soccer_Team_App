@@ -8,14 +8,6 @@ import "./static/styles.css"
 
 class App extends Component {
 
-  state = {
-    soccerPlayers : [
-      {id: 1, name: "Christiano Ronaldo" , position: "Right Forward" , club: "Juventus"},
-      {id: 2,name: "Rooney" , position: "Forward" , club: "Manchester United"},
-      {id: 3,name: "Sergio Ramos" , position: "Center Back" , club: "Real Madrid"},
-    ]
-  }
-
   handleDelete = (id) => {
 
     var soccerPlayers = this.props.soccerPlayers
@@ -69,8 +61,8 @@ class App extends Component {
         </div>
         ) : (
           <div>
-          <FootBallers handleDeleteAllPlayersFromState={this.handleDeleteAllPlayersFromState} 
-          handleDeleted={this.handleDelete} soccerPlayers={this.props.soccerPlayers} />
+          <FootBallers  
+           soccerPlayers={this.props.soccerPlayers} />
           <AddPlayer handleSubmited={this.handleSubmit} />
           </div>
         )}
