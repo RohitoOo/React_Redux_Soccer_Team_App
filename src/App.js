@@ -18,24 +18,21 @@ class App extends Component {
   handleDelete = (id) => {
 
     var soccerPlayers = this.state.soccerPlayers
-
-    // console.log(soccerPlayers)
-
     soccerPlayers = soccerPlayers.filter( (eachPlayer) => {
-      eachPlayer.id = eachPlayer.id.toString()
-
+    eachPlayer.id = eachPlayer.id.toString()
       return eachPlayer.id !== id
-
     } )
 
       this.setState({
         soccerPlayers : soccerPlayers
       })
-
   }
 
-
-
+  handleDeleteAllPlayersFromState = () => {
+    this.setState({
+      soccerPlayers : []
+    })
+  }
 
    handleSubmit = (e) => {
      e.preventDefault()
@@ -56,20 +53,26 @@ class App extends Component {
 
     // Reset form values
 
-    e.target.name.value = "",
-    e.target.position.value = ""
+    e.target.name.value = "";
+    e.target.position.value = "";
 
   }
-
-
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Create Your Dream Team [React App] </h1>
         </header>
-        <FootBallers handleDeleted={this.handleDelete} soccerPlayers={this.state.soccerPlayers} />
+        {this.state.soccerPlayers.length === 0 ? (
+        <div>
         <AddPlayer   handleSubmited={this.handleSubmit} />
+        </div>
+        ) : (
+          <div>
+          <FootBallers handleDeleteAllPlayersFromState={this.handleDeleteAllPlayersFromState} handleDeleted={this.handleDelete} soccerPlayers={this.state.soccerPlayers} />
+          <AddPlayer   handleSubmited={this.handleSubmit} />
+          </div>
+        )}
 
       </div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddPlayer = (props) => {
+const AddPlayer = props => {
 
 function handleSubmit(e){
   e.preventDefault()
@@ -8,14 +8,13 @@ function handleSubmit(e){
 }
 
 return  (<div>
-
     <form onSubmit={handleSubmit}>
       <input type="text" name="name" placeholder="Soccer Player" required/>
       <br/>
       <input type="text"  name="position" placeholder="Player's Position" required/>
       <br/>
       <select id="club" name="club">
-        <option value="Manchester United">Manchester United</option>
+        <option value="Manchester United">Manchester United ( Good Choice )</option>
         <option value="Juventus">Juventus</option>
         <option value="Real Madrid">Real Madrid</option>
         <option value="Chelsea">Chelsea</option>
