@@ -7,6 +7,11 @@ class FootBallers extends Component{
   deleteAllPlayers = () => {
     this.props.handleDeleteAllPlayers();
   }
+
+  deletePlayer = (id) => {
+    this.props.handleDeletePlayer(id);
+  }
+
   render(){
 
     return(
@@ -27,7 +32,7 @@ class FootBallers extends Component{
                </td>
             <td>{player.position}</td>
             <td>{player.club}</td>
-            <td> <button id="deleteBtn" value={player.id} > Remove Player </button></td>
+            <td> <button id="deleteBtn" onClick={() => this.deletePlayer(player.id)}> Remove Player </button></td>
         </tr>)
         })}
         {/* {this.props.soccerPlayers.map( player => 
@@ -69,7 +74,8 @@ class FootBallers extends Component{
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    handleDeleteAllPlayers: () => { dispatch({type: "DELETE_ALL_PLAYERS" }) }
+    handleDeleteAllPlayers: () => { dispatch({type: "DELETE_ALL_PLAYERS" }) },
+    handleDeletePlayer : (id) => { dispatch({type: "DELETE_PLAYER", id : id })}
   }
 }
 
