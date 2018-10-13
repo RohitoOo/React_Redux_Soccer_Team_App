@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import FootBallers from './components/Footballers'
 import AddPlayer from './components/AddPlayer'
@@ -8,53 +7,10 @@ import "./static/styles.css"
 
 class App extends Component {
 
-  handleDelete = (id) => {
-
-    var soccerPlayers = this.props.soccerPlayers
-    soccerPlayers = soccerPlayers.filter( (eachPlayer) => {
-    eachPlayer.id = eachPlayer.id.toString()
-      return eachPlayer.id !== id
-    } )
-
-      this.setState({
-        soccerPlayers : soccerPlayers
-      })
-  }
-
-  handleDeleteAllPlayersFromState = () => {
-    this.setState({
-      soccerPlayers : []
-    })
-  }
-
-   handleSubmit = (e) => {
-     e.preventDefault()
-
-    var newPlayer = {
-      // Unique Id Number For Each Player
-      id: Date.now(),
-      name: e.target.name.value,
-      position: e.target.position.value,
-      club: e.target.club.value
-    }
-
-    var soccerPlayers = this.props.soccerPlayers;
-    soccerPlayers =  [newPlayer , ...soccerPlayers]
-
-    this.setState({
-      soccerPlayers : [...soccerPlayers]
-    })
-
-    // Reset form values
-
-    e.target.name.value = "";
-    e.target.position.value = "";
-
-  }
   render() {
     return (
       <div className="App">
-          <h1 className="App-title">Create Your Dream Team [React App] </h1>
+          <h1 className="App-title">Create Your Dream Team [ React / Redux ] </h1>
         {this.props.soccerPlayers.length === 0 ? (
         <div>
         <AddPlayer handleSubmited={this.handleSubmit} />
@@ -63,7 +19,7 @@ class App extends Component {
           <div>
           <FootBallers  
            soccerPlayers={this.props.soccerPlayers} />
-          <AddPlayer handleSubmited={this.handleSubmit} />
+          <AddPlayer />
           </div>
         )}
       </div>

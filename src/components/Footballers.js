@@ -24,8 +24,9 @@ class FootBallers extends Component{
           <th>Club</th>
           <th><button id="deleteBtn" onClick={this.deleteAllPlayers}> Remove All </button></th>
         </tr>
-        {this.props.soccerPlayers.map( player => {
-          return   (<tr key={player.id}>
+        {
+         this.props.soccerPlayers.map( player => 
+             <tr key={player.id}>
             <td>{player.name}  <span> <a style={{textDecoration:"none"}} title="Who This ?" 
             className="fa fa-question-circle fa-lg" href={"https://www.google.com/search?q=" + player.name}>
             </a> </span>
@@ -33,8 +34,8 @@ class FootBallers extends Component{
             <td>{player.position}</td>
             <td>{player.club}</td>
             <td> <button id="deleteBtn" onClick={() => this.deletePlayer(player.id)}> Remove Player </button></td>
-        </tr>)
-        })}
+        </tr>
+        )}
         {/* {this.props.soccerPlayers.map( player => 
          (<tr key={player.id}>
             <td>{player.name}  <span> <a style={{textDecoration:"none"}} title="Who This ?" 

@@ -7,20 +7,24 @@ const initState = {
 }
 
 const rootReducer = (state = initState, action) => {
-    console.log(action)
 switch(action.type){
     case "DELETE_ALL_PLAYERS":
         return {
             ...state,
             soccerPlayers : []
         }
-     case "DELETE_PLAYER":
+    case "DELETE_PLAYER":
         return {
             ...state,
             soccerPlayers : state.soccerPlayers.filter( player => {
                 return player.id !== action.id 
             })
-        }   
+        }
+    case "ADD_PLAYER":
+        return {
+            ...state,
+            soccerPlayers: [action.newPlayer, ...state.soccerPlayers]
+        }        
     default:  
         return state
     }  
