@@ -20,10 +20,10 @@ return  (<div>
         <option value="Chelsea">Chelsea</option>
         <option value="Arsenal">Arsenal</option>
         <option value="Barcelona">Barcelona</option>
+        <option value="Barcelona">Bayern Munich</option>
       </select>
       <button id='button'> Add Player </button>
     </form>
-
   </div>
 )};
 

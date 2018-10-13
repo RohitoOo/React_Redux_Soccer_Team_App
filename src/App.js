@@ -38,6 +38,7 @@ class App extends Component {
      e.preventDefault()
 
     var newPlayer = {
+      // Unique Id Number For Each Player
       id: Date.now(),
       name: e.target.name.value,
       position: e.target.position.value,
@@ -65,15 +66,14 @@ class App extends Component {
         </header>
         {this.state.soccerPlayers.length === 0 ? (
         <div>
-        <AddPlayer   handleSubmited={this.handleSubmit} />
+        <AddPlayer handleSubmited={this.handleSubmit} />
         </div>
         ) : (
           <div>
           <FootBallers handleDeleteAllPlayersFromState={this.handleDeleteAllPlayersFromState} handleDeleted={this.handleDelete} soccerPlayers={this.state.soccerPlayers} />
-          <AddPlayer   handleSubmited={this.handleSubmit} />
+          <AddPlayer handleSubmited={this.handleSubmit} />
           </div>
         )}
-
       </div>
     );
   }
