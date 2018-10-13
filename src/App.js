@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import FootBallers from './components/Footballers'
 import AddPlayer from './components/AddPlayer'
-
+import { connect } from 'react-redux'
+ 
 import "./static/styles.css"
 
 class App extends Component {
@@ -17,7 +18,7 @@ class App extends Component {
 
   handleDelete = (id) => {
 
-    var soccerPlayers = this.state.soccerPlayers
+    var soccerPlayers = this.props.soccerPlayers
     soccerPlayers = soccerPlayers.filter( (eachPlayer) => {
     eachPlayer.id = eachPlayer.id.toString()
       return eachPlayer.id !== id
@@ -45,7 +46,7 @@ class App extends Component {
       club: e.target.club.value
     }
 
-    var soccerPlayers = this.state.soccerPlayers;
+    var soccerPlayers = this.props.soccerPlayers;
     soccerPlayers =  [newPlayer , ...soccerPlayers]
 
     this.setState({
@@ -61,16 +62,15 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
           <h1 className="App-title">Create Your Dream Team [React App] </h1>
-        </header>
-        {this.state.soccerPlayers.length === 0 ? (
+        {this.props.soccerPlayers.length === 0 ? (
         <div>
         <AddPlayer handleSubmited={this.handleSubmit} />
         </div>
         ) : (
           <div>
-          <FootBallers handleDeleteAllPlayersFromState={this.handleDeleteAllPlayersFromState} handleDeleted={this.handleDelete} soccerPlayers={this.state.soccerPlayers} />
+          <FootBallers handleDeleteAllPlayersFromState={this.handleDeleteAllPlayersFromState} 
+          handleDeleted={this.handleDelete} soccerPlayers={this.props.soccerPlayers} />
           <AddPlayer handleSubmited={this.handleSubmit} />
           </div>
         )}
@@ -79,7 +79,13 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    soccerPlayers : state.soccerPlayers
+  }
+}
+
+export default connect(mapStateToProps)(App);
 
 
 // Container Component (Class Component) VS UI Component

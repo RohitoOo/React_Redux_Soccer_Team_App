@@ -9,7 +9,10 @@ const FootBallers = ({handleDeleted, soccerPlayers, handleDeleteAllPlayersFromSt
   }
   const players = soccerPlayers.map( player => 
         <tr key={player.id}>
-            <td>{player.name}   <a title="Who This ?" className="fa fa-question fa-lg" href={"https://www.google.com/search?q=" + player.name}></a></td>
+            <td>{player.name}  <span> <a style={{textDecoration:"none"}} title="Who This ?" 
+            className="fa fa-question-circle fa-lg" href={"https://www.google.com/search?q=" + player.name}>
+            </a> </span>
+               </td>
             <td>{player.position}</td>
             <td>{player.club}</td>
             <td> <button id="deleteBtn" value={player.id} onClick={handleDelete}> Remove Player </button></td>
@@ -23,7 +26,7 @@ const FootBallers = ({handleDeleted, soccerPlayers, handleDeleteAllPlayersFromSt
         <th>Soccer Player</th>
         <th>Position</th>
         <th>Club</th>
-        <th><button id="deleteBtn" onClick={handleDeleteAll} > Remove All </button></th>
+        <th><button id="deleteBtn" onClick={handleDeleteAll}> Remove All </button></th>
       </tr>
           { players }
     </tbody>
