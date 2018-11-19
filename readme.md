@@ -9,7 +9,8 @@ Functionalities include :
 1. Adding Players Manually To A Dream Team.
 2. Updating State From Any Component Using Redux Store.
 3. Deleting Single Or All Players From the Squad.
-4. Front End Validation While Adding Players.
+4. Edit Player's Details (using Redux).
+5. Front End Validation While Adding Players.
 
 ![ScreenShot](screenShot1.png)
 
