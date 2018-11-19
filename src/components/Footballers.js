@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-
+import { Link } from 'react-router-dom';
 class FootBallers extends Component{
 
   deleteAllPlayers = () => {
@@ -12,20 +11,25 @@ class FootBallers extends Component{
     this.props.handleDeletePlayer(id);
   }
 
-  render(){
+  editPlayer = (id) => {
+    this.props.selectPlayerToEdit(id); 
+  }
 
+  render(){
     return(
       <div>
       <table>
+        <thead>
+          <tr>
+            <th>Soccer Player</th>
+            <th>Position</th>
+            <th>Club</th>
+            <th><button id="deleteBtn" onClick={this.deleteAllPlayers}> Remove All </button></th>
+            <th></th>
+          </tr>
+        </thead>
         <tbody>
-        <tr>
-          <th>Soccer Player</th>
-          <th>Position</th>
-          <th>Club</th>
-          <th><button id="deleteBtn" onClick={this.deleteAllPlayers}> Remove All </button></th>
-        </tr>
-        {
-         this.props.soccerPlayers.map( player => 
+        {this.props.soccerPlayers.map( player => 
              <tr key={player.id}>
             <td>{player.name}  <span> <a style={{textDecoration:"none"}} title="Who This ?" 
             className="fa fa-question-circle fa-lg" href={"https://www.google.com/search?q=" + player.name}>
@@ -34,20 +38,13 @@ class FootBallers extends Component{
             <td>{player.position}</td>
             <td>{player.club}</td>
             <td> <button id="deleteBtn" onClick={() => this.deletePlayer(player.id)}> Remove Player </button></td>
+            <td> 
+              <Link to='/editPlayer'>
+               <button id="editBtn" onClick={() => this.editPlayer(player.id)}> Edit Player </button>
+              </Link>
+            </td>
         </tr>
         )}
-        {/* {this.props.soccerPlayers.map( player => 
-         (<tr key={player.id}>
-            <td>{player.name}  <span> <a style={{textDecoration:"none"}} title="Who This ?" 
-            className="fa fa-question-circle fa-lg" href={"https://www.google.com/search?q=" + player.name}>
-            </a> </span>
-               </td>
-            <td>{player.position}</td>
-            <td>{player.club}</td>
-            <td> <button id="deleteBtn" value={player.id} onClick={handleDelete}> Remove Player </button></td>
-        </tr>)
-        } */}
-            {/* { players } */}
       </tbody>
     </table>
     </div>
@@ -55,29 +52,20 @@ class FootBallers extends Component{
   }
 }
 
-// const FootBallers = ({handleDeleted, soccerPlayers, handleDeleteAllPlayersFromState}) => {
-//   function handleDelete (e){
-//     handleDeleted(e.target.value)
-//   }
-//   function handleDeleteAll(){
-//     console.log("Handle Delete ALL")
-
-//     // console.log(props)
-
-//     // this.props.handleDeleteAllPlayers()
-    
-//   }
- 
-//  )
-//   return (
-
-// )}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     handleDeleteAllPlayers: () => { dispatch({type: "DELETE_ALL_PLAYERS" }) },
-    handleDeletePlayer : (id) => { dispatch({type: "DELETE_PLAYER", id : id })}
+    handleDeletePlayer : (id) => { dispatch({type: "DELETE_PLAYER", id : id })},
+    selectPlayerToEdit : (id) => { dispatch({type: "EDIT_PLAYER", id : id })}
+    
   }
 }
 
-export default connect(null, mapDispatchToProps)(FootBallers)
+const mapStateToProps = (state) => {
+  return {
+    soccerPlayers : state.soccerPlayers
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FootBallers)

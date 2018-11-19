@@ -26,7 +26,7 @@ App{
   align-content: center;
 }
 
-#deleteBtn{
+#deleteBtn, #editBtn{
 
     background-color:#f2f2f2;
     border: none;
@@ -50,3 +50,10 @@ App{
   background-color: maroon;
   transition: .8s;
 }
+
+#editBtn:hover{
+    color: black;
+    background-color: rgb(128, 154, 240);
+    transition: .8s;
+  }
+  

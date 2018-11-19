@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, * as react from 'react';
 import { connect } from 'react-redux'
+// import PropTypes from 'prop-types';
 
-
-class AddPlayer extends Component{ 
+class AddPlayer extends react.Component{ 
   handleSubmit = (e) => {
     e.preventDefault();
      var newPlayer = {
@@ -13,15 +13,15 @@ class AddPlayer extends Component{
        club: e.target.club.value
      }
      this.props.addPlayer(newPlayer)
-     
     // Reset form values
- 
      e.target.name.value = "";
      e.target.position.value = "";
-
+     this.props.history && (
+     this.props.history.push('/'))
   }
   render(){
     return(<div>
+      <p>{this.props.name}</p>
       <form onSubmit={this.handleSubmit}>
         <input type="text" name="name" placeholder="Soccer Player" required/>
         <br/>
@@ -34,17 +34,17 @@ class AddPlayer extends Component{
           <option value="Chelsea">Chelsea</option>
           <option value="Arsenal">Arsenal</option>
           <option value="Barcelona">Barcelona</option>
-          <option value="Barcelona">Bayern Munich</option>
+          <option value="Bayern Munich">Bayern Munich</option>
         </select>
         <button id='button'> Add Player </button>
       </form>
     </div>
-
     )
   }
 }
-
 const mapStateToProps = (dispatch) => {
+
+  // Display Action 
   return {
     addPlayer: (newPlayer) => { dispatch({type: "ADD_PLAYER", newPlayer: newPlayer})}
   }

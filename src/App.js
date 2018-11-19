@@ -1,28 +1,30 @@
-import React, { Component } from 'react';
-import FootBallers from './components/Footballers'
+import React, * as react from 'react'
 import AddPlayer from './components/AddPlayer'
+import Home from './components/Home.js'
+import EditPlayer from './components/EditPlayer'
+
 import { connect } from 'react-redux'
- 
+import {Route, Switch, BrowserRouter} from 'react-router-dom' 
+
 import "./static/styles.css"
 
-class App extends Component {
-
+class App extends react.Component {
   render() {
     return (
-      <div className="App">
-          <h1 className="App-title">Create Your Dream Team [ React / Redux ] </h1>
-        {this.props.soccerPlayers.length === 0 ? (
-        <div>
-        <AddPlayer handleSubmited={this.handleSubmit} />
-        </div>
-        ) : (
-          <div>
-          <FootBallers  
-           soccerPlayers={this.props.soccerPlayers} />
-          <AddPlayer />
-          </div>
-        )}
+      <BrowserRouter>
+      <div className="Container">
+
+        <h1 className="App-title">Create Your Dream Team [ React / Redux ] </h1>
+        <Switch>
+          <Route exact path='/' component={Home}/>
+          <Route exact path='/addPlayer' component={AddPlayer}/>
+          <Route exact path='/editPlayer' component={EditPlayer}/>
+        </Switch>
+       
       </div>
+
+
+      </BrowserRouter>
     );
   }
 }
@@ -42,7 +44,7 @@ export default connect(mapStateToProps)(App);
 // 1. Contain State
 // 2. Contain Life cycle hooks
 // 3. Not Concerned with UI
-// 4. Use Classe to create these components
+// 4. Use Class to create these components
 //
 // UI Components
 // 1. Does not contain State ( rec data from Container Comp)
