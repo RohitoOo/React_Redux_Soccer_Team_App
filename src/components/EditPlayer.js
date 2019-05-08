@@ -1,6 +1,6 @@
 import React, * as react from "react"
 import { connect } from "react-redux"
-
+import { Box, Button, TextInput } from "grommet"
 class EditPlayer extends react.Component {
   state = {
     name: this.props.editPlayer[0].name,
@@ -17,46 +17,65 @@ class EditPlayer extends react.Component {
   }
   handleUpdate = e => {
     e.preventDefault()
-    let updatedPlayer = {
-      id: e.target["playerId"].value,
-      name: e.target["name"].value,
-      position: e.target["position"].value
-      // club: e.target["club"].value,
+
+    console.log(e.target["playerId"].value)
+    let updatedPlayer = {}
+    if (e.target["playerId"].value < 12) {
+      updatedPlayer = {
+        id: e.target["playerId"].value,
+        name: e.target["name"].value,
+        position: e.target["position"].value
+        // club: e.target["club"].value,
+      }
+      this.props.handleUpdatePlayerTeam1(updatedPlayer)
+      this.props.history.push("/")
+    } else {
+      updatedPlayer = {
+        id: e.target["playerId"].value,
+        name: e.target["name"].value,
+        position: e.target["position"].value
+        // club: e.target["club"].value,
+      }
+      this.props.handleUpdatePlayerTeam2(updatedPlayer)
+      this.props.history.push("/")
     }
-    console.log({ updatedPlayer })
-    this.props.handleUpdatePlayer(updatedPlayer)
-    this.props.history.push("/")
+
+    //  updatedPlayer = {
+    //   id: e.target["playerId"].value,
+    //   name: e.target["name"].value,
+    //   position: e.target["position"].value
+    //   // club: e.target["club"].value,
+    // }
+    // // console.log({ updatedPlayer })
+    // this.props.handleUpdatePlayerTeam1(updatedPlayer)
+    // this.props.history.push("/")
   }
   render() {
-    console.log(this.props)
     return (
-      <div>
-        <form onSubmit={this.handleUpdate}>
-          <input
+      <form onSubmit={this.handleUpdate}>
+        <Box align="center" gap="medium" pad="small">
+          <TextInput
             style={{ display: "none" }}
             name="playerId"
             onChange={this.DummyFunc}
             value={this.props.editPlayer[0].id}
-          />{" "}
+          />
           <h1>Soccer Player</h1>
-          <input
+          <TextInput
             type="text"
             name="name"
             value={this.state.name}
             onChange={this.handleChange}
             required
-          />{" "}
+          />
           <h1>Player's Position</h1>
-          <br />
-          <input
+          <TextInput
             type="text"
             name="position"
             value={this.state.position}
             onChange={this.handleChange}
             required
-          />{" "}
-          <h1>Club</h1>
-          <br />
+          />
           {/* <select id="club" name="club">
             <option>{this.state.club}</option>
             <option value="Manchester United">
@@ -69,9 +88,9 @@ class EditPlayer extends react.Component {
             <option value="Barcelona">Barcelona</option>
             <option value="Bayern Munich">Bayern Munich</option>
           </select> */}
-          <button id="button"> Update </button>
-        </form>
-      </div>
+          <Button type="submit" id="button" label="Update" />
+        </Box>
+      </form>
     )
   }
 }
@@ -83,8 +102,11 @@ const matchStateToProps = state => {
 
 const matchDispatchToProps = dispatch => {
   return {
-    handleUpdatePlayer: updatedPlayer => {
-      dispatch({ type: "UPDATE_PLAYER", updatedPlayer })
+    handleUpdatePlayerTeam1: updatedPlayer => {
+      dispatch({ type: "UPDATE_PLAYER_1", updatedPlayer })
+    },
+    handleUpdatePlayerTeam2: updatedPlayer => {
+      dispatch({ type: "UPDATE_PLAYER_2", updatedPlayer })
     }
   }
 }

@@ -1,31 +1,32 @@
 import React, * as react from "react"
-import FootBallers from "./Footballers"
+import Team2 from "./Team2"
+import Team1 from "./Team1"
 import AddPlayer from "./AddPlayer"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 // import "../static/styles.css"
-import { Box, Heading } from "grommet"
+import { Box, Heading, Button } from "grommet"
 class Home extends react.Component {
   render() {
     return (
       <Box>
-        {this.props.soccerPlayers.length === 0 ? (
+        {this.props.Team1Players.length === 0 ? (
           <div>
             <AddPlayer />
           </div>
         ) : (
           <Box direction="row" justify="between" align="center">
-            <Box pad="small">
-              <FootBallers {...this.props} />
+            <Box pad="small" align="center">
+              <Team1 {...this.props} />
               <Link to="/addPlayer">
-                <button id="button">Add Player</button>
+                <Button label="Add Player" />
               </Link>
             </Box>
             <Heading>VS</Heading>
-            <Box>
-              <FootBallers />
+            <Box pad="small" align="center">
+              <Team2 {...this.props} />
               <Link to="/addPlayer">
-                <button id="button">Add Player</button>
+                <Button label="Add Player" />
               </Link>
             </Box>
           </Box>
@@ -37,7 +38,7 @@ class Home extends react.Component {
 
 const mapStateToProps = state => {
   return {
-    soccerPlayers: state.soccerPlayers
+    Team1Players: state.Team1Players
   }
 }
 

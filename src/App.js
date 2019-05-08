@@ -14,7 +14,7 @@ class App extends react.Component {
       <BrowserRouter>
         <Grommet theme={theme}>
           <Box align="center" gap="small" pad="medium">
-            <h1>Create Your Dream Team [ React / Redux ] </h1>
+            <h1>Create Your Dream Soccer Match [ React / Redux ] </h1>
             <Box>
               <Switch>
                 <Route exact path="/" component={Home} />

@@ -21,7 +21,7 @@ class AddPlayer extends react.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <Box pad="small" gap="medium" align="center">
+        <Box pad="small" gap="medium" align="center" justify="center">
           <Text>Add A New Player To Your Squad</Text>
           <TextInput
             type="text"
@@ -44,10 +44,12 @@ class AddPlayer extends react.Component {
           <option value="Barcelona">Barcelona</option>
           <option value="Bayern Munich">Bayern Munich</option>
         </select> */}
-          <Button type="submit" id="button">
-            {" "}
-            Add Player{" "}
-          </Button>
+          <Box>
+            <Button type="submit" pad="small">
+              {" "}
+              Add Player{" "}
+            </Button>
+          </Box>
         </Box>
       </form>
     )
