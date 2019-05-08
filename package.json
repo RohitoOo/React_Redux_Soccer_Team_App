@@ -10,6 +10,8 @@
     "eslint": "^5.7.0",
     "eslint-loader": "^2.1.1",
     "font-awesome": "^4.7.0",
+    "grommet": "^2.7.0",
+    "grommet-icons": "^4.2.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
@@ -18,7 +20,8 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.2.0"
   },
   "scripts": {
     "start": "port=process.env.port || 3000 && react-scripts start",

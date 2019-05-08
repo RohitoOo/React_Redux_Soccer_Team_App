@@ -1,42 +1,43 @@
-import React, * as react from 'react'
-import AddPlayer from './components/AddPlayer'
-import Home from './components/Home.js'
-import EditPlayer from './components/EditPlayer'
+import React, * as react from "react"
+import AddPlayer from "./components/AddPlayer"
+import Home from "./components/Home.js"
+import EditPlayer from "./components/EditPlayer"
 
-import { connect } from 'react-redux'
-import {Route, Switch, BrowserRouter} from 'react-router-dom' 
-
-import "./static/styles.css"
+import { connect } from "react-redux"
+import { Route, Switch, BrowserRouter } from "react-router-dom"
+import { Grommet, Box } from "grommet"
+import { theme } from "./theme"
 
 class App extends react.Component {
   render() {
     return (
       <BrowserRouter>
-      <div className="Container">
-
-        <h1 className="App-title">Create Your Dream Team [ React / Redux ] </h1>
-        <Switch>
-          <Route exact path='/' component={Home}/>
-          <Route exact path='/addPlayer' component={AddPlayer}/>
-          <Route exact path='/editPlayer' component={EditPlayer}/>
-        </Switch>
-       
-      </div>
-
-
+        <Grommet theme={theme}>
+          <Box>
+            <h1 className="App-title">
+              Create Your Dream Team [ React / Redux ]{" "}
+            </h1>
+            <Box>
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/addPlayer" component={AddPlayer} />
+                <Route exact path="/editPlayer" component={EditPlayer} />
+              </Switch>
+            </Box>
+          </Box>
+        </Grommet>
       </BrowserRouter>
-    );
+    )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    soccerPlayers : state.soccerPlayers
+    soccerPlayers: state.soccerPlayers
   }
 }
 
-export default connect(mapStateToProps)(App);
-
+export default connect(mapStateToProps)(App)
 
 // Container Component (Class Component) VS UI Component
 

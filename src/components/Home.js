@@ -1,36 +1,45 @@
-import React, * as react from 'react';
-import FootBallers from './Footballers'
-import AddPlayer from './AddPlayer'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import "../static/styles.css"
-
+import React, * as react from "react"
+import FootBallers from "./Footballers"
+import AddPlayer from "./AddPlayer"
+import { connect } from "react-redux"
+import { Link } from "react-router-dom"
+// import "../static/styles.css"
+import { Box, Heading } from "grommet"
 class Home extends react.Component {
   render() {
     return (
-      <div className="App">
+      <Box>
         {this.props.soccerPlayers.length === 0 ? (
-        <div>
-        <AddPlayer />
-        </div>
-        ) : (
           <div>
-          <FootBallers />
-           <Link  to='/addPlayer' >
-           <button id="button" >Add Player</button>
-           </Link>
-          
+            <AddPlayer />
           </div>
+        ) : (
+          <Box direction="row" justify="between" align="center">
+            <Box>
+              <FootBallers />
+              <Link to="/addPlayer">
+                <button id="button">Add Player</button>
+              </Link>
+            </Box>
+
+            <Heading>VS</Heading>
+            <Box>
+              <FootBallers />
+              <Link to="/addPlayer">
+                <button id="button">Add Player</button>
+              </Link>
+            </Box>
+          </Box>
         )}
-      </div>
-    );
+      </Box>
+    )
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    soccerPlayers : state.soccerPlayers
+    soccerPlayers: state.soccerPlayers
   }
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(Home)
