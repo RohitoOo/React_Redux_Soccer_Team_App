@@ -15,13 +15,12 @@ class Home extends react.Component {
           </div>
         ) : (
           <Box direction="row" justify="between" align="center">
-            <Box>
-              <FootBallers />
+            <Box pad="small">
+              <FootBallers {...this.props} />
               <Link to="/addPlayer">
                 <button id="button">Add Player</button>
               </Link>
             </Box>
-
             <Heading>VS</Heading>
             <Box>
               <FootBallers />

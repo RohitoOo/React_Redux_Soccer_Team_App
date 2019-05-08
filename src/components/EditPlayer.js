@@ -28,6 +28,7 @@ class EditPlayer extends react.Component {
     this.props.history.push("/")
   }
   render() {
+    console.log(this.props)
     return (
       <div>
         <form onSubmit={this.handleUpdate}>
@@ -68,7 +69,7 @@ class EditPlayer extends react.Component {
             <option value="Barcelona">Barcelona</option>
             <option value="Bayern Munich">Bayern Munich</option>
           </select> */}
-          <button id="button"> Edit Player </button>
+          <button id="button"> Update </button>
         </form>
       </div>
     )

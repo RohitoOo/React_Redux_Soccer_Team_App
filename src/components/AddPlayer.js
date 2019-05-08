@@ -1,7 +1,7 @@
 import React, * as react from "react"
 import { connect } from "react-redux"
 // import PropTypes from 'prop-types';
-
+import { Box, TextInput, Button, Text } from "grommet"
 class AddPlayer extends react.Component {
   handleSubmit = e => {
     e.preventDefault()
@@ -20,19 +20,21 @@ class AddPlayer extends react.Component {
   }
   render() {
     return (
-      <div>
-        <p>{this.props.name}</p>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" name="name" placeholder="Soccer Player" required />
-          <br />
-          <input
+      <form onSubmit={this.handleSubmit}>
+        <Box pad="small" gap="medium" align="center">
+          <Text>Add A New Player To Your Squad</Text>
+          <TextInput
+            type="text"
+            name="name"
+            placeholder="Soccer Player"
+            required
+          />
+          <TextInput
             type="text"
             name="position"
             placeholder="Player's Position"
             required
           />
-          <select id="club" name="club" />
-          <br />
           {/* <select id="club" name="club">
           <option value="Manchester United">Manchester United ( Good Choice )</option>
           <option value="Juventus">Juventus</option>
@@ -42,9 +44,12 @@ class AddPlayer extends react.Component {
           <option value="Barcelona">Barcelona</option>
           <option value="Bayern Munich">Bayern Munich</option>
         </select> */}
-          <button id="button"> Add Player </button>
-        </form>
-      </div>
+          <Button type="submit" id="button">
+            {" "}
+            Add Player{" "}
+          </Button>
+        </Box>
+      </form>
     )
   }
 }

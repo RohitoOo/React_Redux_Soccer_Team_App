@@ -8,9 +8,7 @@ import {
   TableBody,
   TableHeader,
   TableRow,
-  Button,
-  Heading,
-  Text
+  Button
 } from "grommet"
 class FootBallers extends Component {
   deleteAllPlayers = () => {
@@ -28,12 +26,12 @@ class FootBallers extends Component {
   render() {
     return (
       <div>
-        <Box>
+        <Box margin="large">
           <Table>
             <TableHeader>
               <TableRow>
                 <TableCell scope="col" border="bottom">
-                  <Heading level="3">No.</Heading>
+                  No.
                 </TableCell>
                 <TableCell scope="col" border="bottom">
                   Player Name
@@ -41,38 +39,52 @@ class FootBallers extends Component {
                 <TableCell scope="col" border="bottom">
                   Player's Position
                 </TableCell>
+                <TableCell scope="col" border="bottom" />
+                <TableCell scope="col" border="bottom" />
               </TableRow>
             </TableHeader>
             <TableBody>
               {this.props.soccerPlayers.map((player, index) => (
-                <TableRow>
+                <TableRow key={index}>
                   <TableCell scope="row">
                     <strong>{index + 1}</strong>
                   </TableCell>
                   <TableCell>{player.name}</TableCell>
                   <TableCell>{player.position}</TableCell>
                   <TableCell>
-                    <Button label="Edit" />
+                    <Button
+                      label="Edit"
+                      color="white"
+                      hoverIndicator="gray"
+                      onClick={() => {
+                        this.editPlayer(player.id)
+                        this.props.history.push(`/editPlayer/${player.id}`)
+                      }}
+                      // onClick={() => this.editPlayer(player.id)}
+                    />
                   </TableCell>
                   <TableCell>
-                    <Button label="Delete" />
+                    <Button
+                      label="x"
+                      color="white"
+                      hoverIndicator="brand"
+                      onClick={() => this.deletePlayer(player.id)}
+                    />
                   </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
         </Box>
-        <table>
+        {/* <table>
           <thead>
             <tr>
               <th>Player</th>
               <th>Soccer Player</th>
               <th>Position</th>
-              {/* <th>Club</th> */}
               <th>
                 <button id="deleteBtn" onClick={this.deleteAllPlayers}>
-                  {" "}
-                  Remove All{" "}
+                  Remove All
                 </button>
               </th>
               <th />
@@ -83,21 +95,18 @@ class FootBallers extends Component {
               <tr key={player.id}>
                 <td>{index + 1}</td>
                 <td>
-                  {player.name}{" "}
+                  {player.name}
                   <span>
-                    {" "}
                     <a
                       style={{ textDecoration: "none" }}
                       title="Who This ?"
                       className="fa fa-question-circle fa-lg"
                       href={"https://www.google.com/search?q=" + player.name}
-                    />{" "}
+                    />
                   </span>
                 </td>
                 <td>{player.position}</td>
-                {/* <td>{player.club}</td> */}
                 <td>
-                  {" "}
                   <button
                     style={{ round: "20px" }}
                     id="deleteBtn"
@@ -110,8 +119,7 @@ class FootBallers extends Component {
                     <button
                       id="editBtn"
                       onClick={() => this.editPlayer(player.id)}>
-                      {" "}
-                      Edit Player{" "}
+                      Edit Player
                     </button>
                   </Link>
                 </td>
@@ -119,6 +127,7 @@ class FootBallers extends Component {
             ))}
           </tbody>
         </table>
+       */}
       </div>
     )
   }

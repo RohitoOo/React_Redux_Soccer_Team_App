@@ -13,15 +13,13 @@ class App extends react.Component {
     return (
       <BrowserRouter>
         <Grommet theme={theme}>
-          <Box>
-            <h1 className="App-title">
-              Create Your Dream Team [ React / Redux ]{" "}
-            </h1>
+          <Box align="center" gap="small" pad="medium">
+            <h1>Create Your Dream Team [ React / Redux ] </h1>
             <Box>
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/addPlayer" component={AddPlayer} />
-                <Route exact path="/editPlayer" component={EditPlayer} />
+                <Route exact path="/editPlayer/:id" component={EditPlayer} />
               </Switch>
             </Box>
           </Box>
